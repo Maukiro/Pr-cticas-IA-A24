@@ -14,8 +14,8 @@ b = np.matrix([[-36, 64, -4, -64]])
 	Ax = b
 """
 def fitness_function(ga_instance, x, solution_idx):
-	result = np.power(np.power(A.dot(x), 2) - np.power(b.transpose(), 2), 2)
-	return 1/(result.sum() + 1e-6)
+	result = np.sqrt(np.power(A.dot(x) - b, 2))
+	return 1/(result.sum())
 
 if __name__ == '__main__':
 	
