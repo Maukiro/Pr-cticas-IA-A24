@@ -5,6 +5,7 @@
 #define MOD 1000000007
 using namespace std;
 typedef long long int ll;
+
 struct RNG{
     ll semilla;
     ll azar(){
@@ -16,6 +17,7 @@ struct RNG{
         return semilla;
     }
 }generator;
+
 struct gato{
     vector<vector<int> > matrix;
     int tamano;
@@ -24,6 +26,17 @@ struct gato{
     bool termino;
     bool ganador;
     int libres;
+
+    void imprime_instrucciones() {
+        cout << "Gato Tonto!" << endl;
+        cout << "Instrucciones:" << endl;
+        cout << "1. El tablero es una cuadricula de 3x3." << endl;
+        cout << "2. Cada jugador (X y O) debe colocar su simbolo en una casilla vacia." << endl;
+        cout << "3. Gana el jugador que logre formar una linea horizontal, vertical o diagonal de su simbolo." << endl;
+        cout << "4. El juego termina cuando un jugador gana o todas las casillas estan ocupadas." << endl;
+        cout << "5. Para colocar tu simbolo, introduce las coordenadas de la casilla en formato fila columna." << endl;
+    }
+    
     void imprime(){
         for(int i=0;i<tamano;i++){
             for(int j=0;j<tamano;j++){
@@ -125,11 +138,17 @@ struct gato{
     gato(int n,bool uno,bool dos):libres(n*n),termino(0),turno(0),matrix(n+2,vector<int>(n+2)),tamano(n),bot({uno,dos}){};
 };
 
-int main(){
+
+int main() {
     srand(time(NULL));
     bool jugador1;
     bool jugador2;
-    cin>>jugador1>>jugador2;
-    gato juego(3,jugador1,jugador2);
+    cout << "Jugador 1 es un bot? (0 = No, 1 = Si): ";
+    cin >> jugador1;
+    cout << "Jugador 2 es un bot? (0 = No, 1 = Si): ";
+    cin >> jugador2;
+
+    gato juego(3, jugador1, jugador2);
+    juego.imprime_instrucciones();
     juego.juego();
 }
